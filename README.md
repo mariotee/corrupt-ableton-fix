@@ -19,7 +19,6 @@ PS: currently, the algorithm is not perfect, but it should lead you in a directi
 PPS: any key that has a bracket [] means that it is part of an array (or collection of nodes). They start @ 0, so \[3\] really means the *fourth* element.
 
 ## TODO:
-- print only paths to XML nodes
 - Accept XML and do conversion to JSON in the program
 - UI to make it so one just uploads file and gets list of key hierarchy
 - Package to executable for both Windows and Mac
