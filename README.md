@@ -11,7 +11,7 @@ WARNING: currently, this finds all XML nodes on the same level with duplicate va
 5. Save this JSON to a new file (copy/paste is fine) called `input.json`
 6. Put this file in the same folder as the `index.js` script
 7. Run this node.js script
-8. The outputted `res.txt` will show the names of every key; any duplicates will have the word `DUPE` printed in all caps
+8. The outputted `res.txt` will show the paths of some duplicate keys
 9. Ctrl/Cmd + F into the project XML and find those duplicate keys to remove
 
 PS: currently, the algorithm is not perfect, but it should lead you in a direction to find other duplicate keys
