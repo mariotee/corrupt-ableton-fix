@@ -15,6 +15,7 @@ WARNING: currently, this finds all XML nodes on the same level with duplicate va
 9. Ctrl/Cmd + F into the project XML and find those duplicate keys to remove
 
 PS: currently, the algorithm is not perfect, but it should lead you in a direction to find other duplicate keys
+
 PPS: any key that has a bracket [] means that it is part of an array (or collection of nodes). They start @ 0, so \[3\] really means the *fourth* element.
 
 ## TODO:
