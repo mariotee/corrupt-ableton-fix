@@ -4,41 +4,42 @@ const filename = "./res.txt"
 
 fs.writeFileSync(filename, "\n")
 
-function appendIndents(file, multiple) {
-    for (let i = 0; i < multiple; ++i) {
-        fs.appendFileSync(file, '-')
-    }           
+function keyEndsInId(name) {
+    return name.match(/id$/i)
 }
 
-function findDuplicates(node, parentKey, level) {
+function findDuplicates(node, parentPath, level) {
     const isObj = (element) => element instanceof Object && !(element instanceof Array)
     const isArr = (element) => element instanceof Object && (element instanceof Array)
 
-    if (isObj(node)) {    
-        appendIndents(filename, level)
-        fs.appendFileSync(filename,parentKey)
-        fs.appendFileSync(filename,"\n")
+    if (isObj(node)) {                
         const vals = []
         for (const key of Object.keys(node)) {
-            if (vals.includes(node[key])) {                     
-                fs.appendFileSync(filename,`DUPE (${key}): ${node[key]}`)
-                fs.appendFileSync(filename,"\n")
-            } else {
-                vals.push(node[key])
+            const path = parentPath + " > " + key
+
+            if (vals.includes(node[key]) && keyEndsInId(key)) {                               
+                fs.appendFileSync(filename,`DUPE PATH = (${path}) ; VALUE = ${node[key]}`)
+                fs.appendFileSync(filename,"\n")                
             }            
 
-            findDuplicates(node[key], key, level+1)
+            vals.push(node[key])
+
+            findDuplicates(node[key], path, level+1)
         }
     } else if (isArr(node)) {
         for (const index in node) {
-            findDuplicates(node[index], `${parentKey}[${index}]`, level+1)
+            findDuplicates(node[index], `${parentPath}[${index}]`, level+1)
         }
     } else {
-        //console.log(r)
+        //DEBUGGING
+        //parentPath.match(/_noteid$/i) && console.log(parentPath)
     }
 }
 
 //main
+const rootKey = "Ableton"
+const initialLevel = 0
+
 let n = Date.now()
-findDuplicates(json, "root",0)
+findDuplicates(json.Ableton, rootKey, initialLevel)
 console.log(`this took ${(Date.now() - n)/1000.0} seconds`)
