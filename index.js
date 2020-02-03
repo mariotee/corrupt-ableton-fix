@@ -1,9 +1,3 @@
-const json = require("./input.json")
-const fs = require("fs")
-const filename = "./res.txt"
-
-fs.writeFileSync(filename, "\n")
-
 function keyEndsInId(name) {
     return name.match(/id$/i)
 }
@@ -59,9 +53,28 @@ function findDuplicates(node, parentPath, level) {
 }
 
 //main
-const rootKey = "Ableton"
-const initialLevel = 0
+// const rootKey = "Ableton"
+// const initialLevel = 0
 
-let n = Date.now()
-findDuplicates(json.Ableton, rootKey, initialLevel)
-console.log(`this took ${(Date.now() - n)/1000.0} seconds`)
+// let n = Date.now()
+// findDuplicates(json.Ableton, rootKey, initialLevel)
+// console.log(`this took ${(Date.now() - n)/1000.0} seconds`)
+
+function processFile() {    
+    const reader = new FileReader()    
+    const res = document.getElementById("result-text")    
+    const file = document.getElementById("input-file").files[0]    
+    
+    if (file.type !== "application/json") {
+        alert('that is not a JSON file')
+        return
+    }
+
+    reader.readAsText(file)    
+    
+    reader.onload = (e) => {
+        const json = e.target.result
+
+        
+    }
+}
