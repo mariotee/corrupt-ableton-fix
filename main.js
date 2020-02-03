@@ -13,7 +13,7 @@ function createWindow () {
     }
   })
   
-  win.loadFile('index.html')  
+  win.loadFile('index.html')
 
   // Emitted when the window is closed.
   win.on('closed', () => {    

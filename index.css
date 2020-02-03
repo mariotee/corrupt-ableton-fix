@@ -1,11 +1,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1rem;
 }
 
 button {
-    font-size: 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 1px solid #ccc;
     padding: 8px 16px;
     box-shadow: 0 0.8px 3px 0 #00000066;
@@ -16,7 +13,8 @@ input#input-file {
     display: none;
 }
 
-button#get-list {  
+button#get-list {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: block;  
   margin-top: 24px;  
   background-color: transparent;
@@ -28,4 +26,8 @@ label.file-input-label {
     padding: 6px 12px;
     cursor: pointer;
     box-shadow: 0 0.8px 3px 0 #00000066;
+}
+
+ul {
+    list-style-type: circle;
 }
