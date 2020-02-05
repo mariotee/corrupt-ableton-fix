@@ -10,7 +10,7 @@ This app was created to easily find which keys have non-unique IDs in a corrupt 
 6. Upload it to the Electron app UI
 7. Click "Get List" to get the list of duplicate keys
 
-PS: currently, the algorithm is not perfect, but it should lead you in a direction to find other duplicate keys
+PS: currently, the algorithm is not perfect, but it should lead you in a really good direction to find other duplicate keys
 
 PPS: any key that has a bracket [] means that it is part of an array (or collection of nodes). They start @ 0, so \[3\] really means the *fourth* element.
 
