@@ -34,7 +34,8 @@ function findDuplicates(node, parentPath, level, list) {
         const vals = []
 
         for (const index in node) {
-            let arrayElement = node[index]
+            const arrayElement = node[index]
+            
             if (noInnerObjects(arrayElement)) {
                 for (const key of Object.keys(arrayElement)) {
                     const path = parentPath + " > " + key
@@ -51,11 +52,12 @@ function findDuplicates(node, parentPath, level, list) {
         }
     }
 }
+
 function loadedFile() {
-    const filenameSection = document.getElementById("filename")
+    const filename = document.getElementById("filename")
     const file = document.getElementById("input-file").files[0]
 
-    filenameSection.innerHTML = "Uploaded " + file.name
+    filename.innerHTML = "Uploaded " + file.name
 }
 
 function processFile() {
