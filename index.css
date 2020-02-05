@@ -1,0 +1,33 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    box-shadow: 0 0.8px 3px 0 #00000066;
+    cursor: pointer;
+}
+
+input#input-file {
+    display: none;
+}
+
+button#get-list {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: block;  
+  margin-top: 24px;  
+  background-color: transparent;
+}
+
+label.file-input-label {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    box-shadow: 0 0.8px 3px 0 #00000066;
+}
+
+ul {
+    list-style-type: circle;
+}

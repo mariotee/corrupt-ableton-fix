@@ -2,10 +2,17 @@
   "name": "ableton-corrupt-fix-ids",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.11"
+  },
+  "dependencies": {
+    "xml-js": "^1.6.11"
+  }
 }

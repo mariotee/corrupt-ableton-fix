@@ -1,9 +1,3 @@
-const json = require("./input.json")
-const fs = require("fs")
-const filename = "./res.txt"
-
-fs.writeFileSync(filename, "\n")
-
 function keyEndsInId(name) {
     return name.match(/id$/i)
 }
@@ -18,50 +12,84 @@ function noInnerObjects(obj) {
     return true
 }
 
-function findDuplicates(node, parentPath, level) {
+function findDuplicates(node, parentPath, level, list) {
     const isObj = (element) => element instanceof Object && !(element instanceof Array)
     const isArr = (element) => element instanceof Object && (element instanceof Array)
 
     if (isObj(node)) {
-        const vals = []        
+        const vals = []
+
         for (const key of Object.keys(node)) {
             const path = parentPath + " > " + key
 
             if (vals.includes(node[key]) && keyEndsInId(key)) {
-                fs.appendFileSync(filename,`DUPE PATH = (${path}) ; VALUE = ${node[key]}`)
-                fs.appendFileSync(filename,"\n")
+                list.push(`PATH = "${path}" ; VALUE = "${node[key]}"`)
+            } else {
+                vals.push(node[key])
             }
 
-            vals.push(node[key])
-
-            findDuplicates(node[key], path, level+1)
+            findDuplicates(node[key], path, level+1, list)
         }
     } else if (isArr(node)) {
         const vals = []
-        for (const index in node) {            
-            let thing = node[index]
-            if (noInnerObjects(thing)) {                               
-                for (const key of Object.keys(thing)) {
+
+        for (const index in node) {
+            const arrayElement = node[index]
+            
+            if (noInnerObjects(arrayElement)) {
+                for (const key of Object.keys(arrayElement)) {
                     const path = parentPath + " > " + key
 
-                    if (vals.includes(thing[key]) && keyEndsInId(key)) {
-                        fs.appendFileSync(filename,`DUPE PATH = (${path}) ; VALUE = ${thing[key]}`)
-                        fs.appendFileSync(filename,"\n")
+                    if (vals.includes(arrayElement[key]) && keyEndsInId(key)) {
+                        list.push(`PATH = "${path}" ; VALUE = "${arrayElement[key]}"`)
+                    } else {
+                        vals.push(arrayElement[key])
                     }
-
-                    vals.push(thing[key])
                 }
             } else {
-                findDuplicates(node[index], `${parentPath}[${index}]`, level+1)
+                findDuplicates(node[index], `${parentPath}[${index}]`, level+1, list)
             }
         }
     }
 }
 
-//main
-const rootKey = "Ableton"
-const initialLevel = 0
+function loadedFile() {
+    const filename = document.getElementById("filename")
+    const file = document.getElementById("input-file").files[0]
 
-let n = Date.now()
-findDuplicates(json.Ableton, rootKey, initialLevel)
-console.log(`this took ${(Date.now() - n)/1000.0} seconds`)
+    filename.innerHTML = "Uploaded " + file.name
+}
+
+function processFile() {
+    const list = []
+    const reader = new FileReader()
+    const res = document.getElementById("result-text")
+    const file = document.getElementById("input-file").files[0]
+
+    res.innerHTML = null
+    
+    if (file.type !== "application/json") {
+        alert('that is not a JSON file')
+        return
+    }
+
+    reader.readAsText(file)
+
+    reader.onload = (e) => {
+        const json = JSON.parse(e.target.result)
+        
+        findDuplicates(json.Ableton, "Ableton", 0, list)
+
+        const ul = document.createElement("UL")
+        
+        for (const item of list) {
+            const li = document.createElement("LI")
+
+            li.innerHTML = item
+
+            ul.appendChild(li)
+        }
+
+        res.appendChild(ul)
+    }
+}
