@@ -7,7 +7,8 @@
 
 <h1>Ableton Corrupted Ids Fix</h1>
 <label for="input-file" class="file-input-label">Import your project JSON</label>
-<input id="input-file" type="file"/>
+<input id="input-file" type="file" onchange="loadedFile()"/>
+<section id="filename">no file yet...</section>
 <button id="get-list" onclick="processFile()">Get List</button>
 <p id="result-text">
   

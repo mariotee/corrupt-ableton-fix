@@ -18,20 +18,22 @@ function findDuplicates(node, parentPath, level, list) {
 
     if (isObj(node)) {
         const vals = []
+
         for (const key of Object.keys(node)) {
             const path = parentPath + " > " + key
 
             if (vals.includes(node[key]) && keyEndsInId(key)) {
                 list.push(`PATH = "${path}" ; VALUE = "${node[key]}"`)
             } else {
-                vals.push(node[key])   
+                vals.push(node[key])
             }
 
             findDuplicates(node[key], path, level+1, list)
         }
     } else if (isArr(node)) {
         const vals = []
-        for (const index in node) {            
+
+        for (const index in node) {
             let arrayElement = node[index]
             if (noInnerObjects(arrayElement)) {
                 for (const key of Object.keys(arrayElement)) {
@@ -41,7 +43,7 @@ function findDuplicates(node, parentPath, level, list) {
                         list.push(`PATH = "${path}" ; VALUE = "${arrayElement[key]}"`)
                     } else {
                         vals.push(arrayElement[key])
-                    }                    
+                    }
                 }
             } else {
                 findDuplicates(node[index], `${parentPath}[${index}]`, level+1, list)
@@ -49,39 +51,40 @@ function findDuplicates(node, parentPath, level, list) {
         }
     }
 }
-
-//main
-// const rootKey = "Ableton"
-// const initialLevel = 0
-
-// let n = Date.now()
-// findDuplicates(json.Ableton, rootKey, initialLevel)
-// console.log(`this took ${(Date.now() - n)/1000.0} seconds`)
-
-function processFile() {    
-    const list = []
-    const reader = new FileReader()    
-    const res = document.getElementById("result-text")
-    res.innerHTML = null
+function loadedFile() {
+    const filenameSection = document.getElementById("filename")
     const file = document.getElementById("input-file").files[0]
+
+    filenameSection.innerHTML = "Uploaded " + file.name
+}
+
+function processFile() {
+    const list = []
+    const reader = new FileReader()
+    const res = document.getElementById("result-text")
+    const file = document.getElementById("input-file").files[0]
+
+    res.innerHTML = null
     
     if (file.type !== "application/json") {
         alert('that is not a JSON file')
         return
     }
 
-    reader.readAsText(file)    
-    
+    reader.readAsText(file)
+
     reader.onload = (e) => {
         const json = JSON.parse(e.target.result)
         
-        findDuplicates(json.Ableton,"Ableton",0,list)
+        findDuplicates(json.Ableton, "Ableton", 0, list)
 
         const ul = document.createElement("UL")
         
         for (const item of list) {
             const li = document.createElement("LI")
+
             li.innerHTML = item
+
             ul.appendChild(li)
         }
 
