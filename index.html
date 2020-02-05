@@ -5,7 +5,30 @@
 <script src="./index.js"></script>
 
 <h1>Ableton Corrupted Ids Fix</h1>
-
+<p>
+  To get started using this tool, you will need to do some tasks beforehand
+</p>
+<ol>
+    <li>Compress .als file to zip</li>
+    <li>Uncompress the same zip to get an XML file</li>
+    <li>
+        Go to <a href="https://codebeautify.org/xmltojson">this site</a>
+        and paste your XML and click "XML to JSON" to convert it into JSON. 
+        Then download that JSON file and upload it here
+    </li>
+    <li>
+        Once you click "Get List", you will see a list of all the keys in your XML where there 
+        are duplicate nodes that have their keys ending with "id"
+    </li>
+    <li>
+        Use the error message from Ableton to help find the right duplicates to remove <br/>
+        <em>for example:</em>
+        <pre>
+            The document "______" is corrupt. (Non-unique Note ids)
+        </pre>
+        <em>This means that you should look for keys with duplicate "Note Id" values</em>
+    </li>
+</ol>
 <label for="input-file" class="file-input-label">Import your project JSON</label>
 <input id="input-file" type="file" onchange="loadedFile()"/>
 <section id="filename">no file yet...</section>
