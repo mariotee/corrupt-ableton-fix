@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, shell } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -14,6 +14,12 @@ function createWindow () {
   })
   
   win.loadFile('index.html')
+
+  // Emitted when an external link is clicked
+  win.webContents.on("new-window", (e, url) => {
+    e.preventDefault()
+    shell.openExternal(url)
+  })
 
   // Emitted when the window is closed.
   win.on('closed', () => {    
