@@ -5,7 +5,7 @@ This app was created to easily find which keys have non-unique IDs in a corrupt 
 1. Clone this repo
 2. Zip/compress your .als file
 3. Unzip to get the XML for your project
-4. Go to https://codebeautify.org/xmltojson and get the JSON version of your file
+4. Convert XML text to JSON using any converter (there are plenty online)
 5. Save this JSON to a new file (copy/paste is fine)
 6. Upload it to the Electron app UI
 7. Click "Get List" to get the list of duplicate keys
