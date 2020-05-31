@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fa625a4b4b94166eb3ced588fbe2e560",
+    "revision": "936c6c292aa95c2b72ae56245db5b97a",
     "url": "/corrupt-ableton-fix/index.html"
   },
   {
-    "revision": "92f323759e55a7253cfd",
+    "revision": "b3a5d3b72b21761477a8",
     "url": "/corrupt-ableton-fix/static/css/main.523f09c5.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/corrupt-ableton-fix/static/js/2.0489c39c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "92f323759e55a7253cfd",
-    "url": "/corrupt-ableton-fix/static/js/main.3bc3ddf9.chunk.js"
+    "revision": "b3a5d3b72b21761477a8",
+    "url": "/corrupt-ableton-fix/static/js/main.c2d95092.chunk.js"
   },
   {
     "revision": "a78461aca94b32e1dbc1",

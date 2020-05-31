@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/corrupt-ableton-fix/static/css/main.523f09c5.chunk.css",
-    "main.js": "/corrupt-ableton-fix/static/js/main.3bc3ddf9.chunk.js",
-    "main.js.map": "/corrupt-ableton-fix/static/js/main.3bc3ddf9.chunk.js.map",
+    "main.js": "/corrupt-ableton-fix/static/js/main.c2d95092.chunk.js",
+    "main.js.map": "/corrupt-ableton-fix/static/js/main.c2d95092.chunk.js.map",
     "runtime-main.js": "/corrupt-ableton-fix/static/js/runtime-main.bd66e79d.js",
     "runtime-main.js.map": "/corrupt-ableton-fix/static/js/runtime-main.bd66e79d.js.map",
     "static/js/2.0489c39c.chunk.js": "/corrupt-ableton-fix/static/js/2.0489c39c.chunk.js",
     "static/js/2.0489c39c.chunk.js.map": "/corrupt-ableton-fix/static/js/2.0489c39c.chunk.js.map",
     "index.html": "/corrupt-ableton-fix/index.html",
-    "precache-manifest.e91f1526c93249e84562f2b030e48b91.js": "/corrupt-ableton-fix/precache-manifest.e91f1526c93249e84562f2b030e48b91.js",
+    "precache-manifest.a193df523c68a0ef111c7550f7bd8a3f.js": "/corrupt-ableton-fix/precache-manifest.a193df523c68a0ef111c7550f7bd8a3f.js",
     "service-worker.js": "/corrupt-ableton-fix/service-worker.js",
     "static/css/main.523f09c5.chunk.css.map": "/corrupt-ableton-fix/static/css/main.523f09c5.chunk.css.map",
     "static/js/2.0489c39c.chunk.js.LICENSE.txt": "/corrupt-ableton-fix/static/js/2.0489c39c.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.bd66e79d.js",
     "static/js/2.0489c39c.chunk.js",
     "static/css/main.523f09c5.chunk.css",
-    "static/js/main.3bc3ddf9.chunk.js"
+    "static/js/main.c2d95092.chunk.js"
   ]
 }
