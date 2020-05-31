@@ -23,7 +23,7 @@ export default (props) => <div>
           <em>This means that you should look for keys with duplicate "Note Id" values</em>
       </li>
   </ol>
-  <label htmlFor="input-file" className="file-input-label">Import your project JSON</label>
+  <label htmlFor="input-file" className="file-input-label">Import your project XML</label>
   <input id="input-file" type="file" onChange={Algs.loadedFile}/>
   <section id="filename">no file yet...</section>
 
