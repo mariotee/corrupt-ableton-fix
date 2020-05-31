@@ -8,8 +8,8 @@ export default (props) => <div>
   </p>
   <ol>
       <li>Make a copy of .als file and rename it, appending ".zip" to the end</li>
-      <li>Uncompress the .zip file to get an uncompressed ALS file</li>
-      <li>This is actually an XML file now, so uplaod the XML here</li>
+      <li>Unzip the new .zip file to get an uncompressed ALS file</li>
+      <li>This is actually an XML file now, so upload the XML here</li>
       <li>
           Once you click "Get List", you will see a list of all the keys in your XML where there 
           are duplicate nodes that have their keys ending with "id"
