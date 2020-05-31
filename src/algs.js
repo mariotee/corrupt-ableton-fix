@@ -1,3 +1,5 @@
+const XmlParse = require('xml2js').parseString
+
 function keyEndsInId(name) {
     return name.match(/id$/i)
 }
@@ -13,8 +15,8 @@ function noInnerObjects(obj) {
 }
 
 function findDuplicates(node, parentPath, level, list) {
-    const isObj = (element) => element instanceof Object && !(element instanceof Array)
-    const isArr = (element) => element instanceof Object && (element instanceof Array)
+    const isObj = (element) => (element instanceof Object) && !(element instanceof Array)
+    const isArr = (element) => (element instanceof Object) && (element instanceof Array)
 
     if (isObj(node)) {
         const vals = []
@@ -53,43 +55,43 @@ function findDuplicates(node, parentPath, level, list) {
     }
 }
 
-function loadedFile() {
+export function loadedFile() {
     const filename = document.getElementById("filename")
     const file = document.getElementById("input-file").files[0]
 
     filename.innerHTML = "Uploaded " + file.name
 }
 
-function processFile() {
+export function processFile() {
     const list = []
     const reader = new FileReader()
     const res = document.getElementById("result-text")
-    const file = document.getElementById("input-file").files[0]
+    const file = document.getElementById("input-file").files[0]    
 
-    res.innerHTML = null
-    
-    if (file.type !== "application/json") {
-        alert('that is not a JSON file')
-        return
-    }
+    res.innerHTML = null    
 
     reader.readAsText(file)
 
-    reader.onload = (e) => {
-        const json = JSON.parse(e.target.result)
+    reader.onload = (e) => {        
+        XmlParse(e.target.result, (err, parsed) => {
+            if (err) {
+                console.log(err)
+                return
+            }
         
-        findDuplicates(json.Ableton, "Ableton", 0, list)
-
-        const ul = document.createElement("UL")
-        
-        for (const item of list) {
-            const li = document.createElement("LI")
-
-            li.innerHTML = item
-
-            ul.appendChild(li)
-        }
-
-        res.appendChild(ul)
+            findDuplicates(parsed.Ableton, "Ableton", 0, list)
+    
+            const ul = document.createElement("UL")
+            
+            for (const item of list) {
+                const li = document.createElement("LI")
+    
+                li.innerHTML = item
+    
+                ul.appendChild(li)
+            }
+            
+            res.appendChild(ul)            
+        });                
     }
 }
