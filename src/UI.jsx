@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<meta charset="UTF-8">
-<title>Ableton Corrupted Ids Fix</title>
-<link rel="stylesheet" href="./index.css">
-<script src="./index.js"></script>
-
 <h1>Ableton Corrupted Ids Fix</h1>
 <p>
     To get started using this tool, you will need to do some tasks beforehand
