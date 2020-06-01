@@ -1,5 +1,3 @@
-const XmlParse = require('xml2js').parseString
-
 function keyEndsInId(name) {
     return name.match(/id$/i)
 }
@@ -14,7 +12,8 @@ function noInnerObjects(obj) {
     return true
 }
 
-function findDuplicates(node, parentPath, level, list) {
+//TODO: return list concatenations rather than in-place push
+export function findDuplicates(node, parentPath, level, list) {
     const isObj = (element) => (element instanceof Object) && !(element instanceof Array)
     const isArr = (element) => (element instanceof Object) && (element instanceof Array)
 
@@ -25,7 +24,7 @@ function findDuplicates(node, parentPath, level, list) {
             const path = parentPath + " > " + key
 
             if (vals.includes(node[key]) && keyEndsInId(key)) {
-                list.push(`PATH = "${path}" ; VALUE = "${node[key]}"`)
+                list.push({path, val: node[key]})
             } else {
                 vals.push(node[key])
             }
@@ -43,7 +42,7 @@ function findDuplicates(node, parentPath, level, list) {
                     const path = parentPath + " > " + key
 
                     if (vals.includes(arrayElement[key]) && keyEndsInId(key)) {
-                        list.push(`PATH = "${path}" ; VALUE = "${arrayElement[key]}"`)
+                        list.push({path, val: arrayElement[key]})
                     } else {
                         vals.push(arrayElement[key])
                     }
@@ -55,43 +54,3 @@ function findDuplicates(node, parentPath, level, list) {
     }
 }
 
-export function loadedFile() {
-    const filename = document.getElementById("filename")
-    const file = document.getElementById("input-file").files[0]
-
-    filename.innerHTML = "Uploaded " + file.name
-}
-
-export function processFile() {
-    const list = []
-    const reader = new FileReader()
-    const res = document.getElementById("result-text")
-    const file = document.getElementById("input-file").files[0]    
-
-    res.innerHTML = null    
-
-    reader.readAsText(file)
-
-    reader.onload = (e) => {        
-        XmlParse(e.target.result, (err, parsed) => {
-            if (err) {
-                console.log(err)
-                return
-            }
-        
-            findDuplicates(parsed.Ableton, "Ableton", 0, list)
-    
-            const ul = document.createElement("UL")
-            
-            for (const item of list) {
-                const li = document.createElement("LI")
-    
-                li.innerHTML = item
-    
-                ul.appendChild(li)
-            }
-            
-            res.appendChild(ul)            
-        });                
-    }
-}
