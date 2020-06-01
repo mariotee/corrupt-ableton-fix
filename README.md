@@ -1,14 +1,7 @@
 # ableton-fix_corrupt-non-unique-ids
 This app was created to easily find which keys have non-unique IDs in a corrupt Ableton Live Set (.als) file. This error happens when Ableton sometimes tweaks and writes a duplicate ID to the project XML (which is invalid).
 
-# How to Use
-1. Clone this repo
-2. Zip/compress your .als file
-3. Unzip to get the XML for your project
-4. Convert XML text to JSON using any converter (there are plenty online)
-5. Save this JSON to a new file (copy/paste is fine)
-6. Upload it to the Electron app UI
-7. Click "Get List" to get the list of duplicate keys
+instructions displayed in app
 
 PS: currently, the algorithm is not perfect, but it should lead you in a really good direction to find other duplicate keys
 
