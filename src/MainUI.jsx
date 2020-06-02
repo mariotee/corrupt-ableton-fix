@@ -3,7 +3,7 @@ import XmlJs from 'xml2js'
 
 import * as Algs from './algs'
 
-export default (props) => {    
+export default () => {
     let reader
     
     const [stateList, setStateList] = React.useState([])
@@ -20,18 +20,19 @@ export default (props) => {
         reader.readAsText(file)
     }
 
-    const processFile = () => {                           
+    const processFile = () => {
+        const list = []
         XmlJs.parseString(stateFile, (err, parsed) => {
             if (err) {
                 console.log(err)
                 return
             }
             setProcessing(true)
-            Algs.findDuplicates(parsed.Ableton, "Ableton", 0, stateList)
+            Algs.findDuplicates(parsed.Ableton, "Ableton", 0, list)
             //TODO: find a better way to render this list from the algorithm itself
-            setStateList([...stateList])
+            setStateList(list)
             setProcessing(false)
-        });                         
+        });
     }
     
     return <div>
@@ -57,15 +58,15 @@ export default (props) => {
             </li>
         </ol>
         <div>Import your project XML</div>
-        <input type="file" onChange={(e) => loadFile(e.target.files[0])}/>        
+        <input type="file" onChange={(e) => loadFile(e.target.files[0])}/>
 
         <button onClick={processFile}>Get List</button>
         
         <section>
-            <div>{processing && "processing..."}</div>
+            {processing ? <div>processing...</div> : null}
             <table>
                 <thead>
-                    <tr><td>PATH</td><td>VALUE</td></tr>                    
+                    <tr><td>PATH</td><td>VALUE</td></tr>
                 </thead>
                 <tbody>
                 {
@@ -74,8 +75,8 @@ export default (props) => {
                         <td>{e.val}</td>
                     </tr>)
                 }
-                </tbody>            
+                </tbody>
             </table>
-        </section>        
+        </section>
     </div>
 }
