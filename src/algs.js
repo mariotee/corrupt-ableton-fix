@@ -12,7 +12,6 @@ function noInnerObjects(obj) {
     return true
 }
 
-//TODO: return list concatenations rather than in-place push
 export function findDuplicates(node, parentPath, level, list) {
     const isObj = (element) => (element instanceof Object) && !(element instanceof Array)
     const isArr = (element) => (element instanceof Object) && (element instanceof Array)
@@ -39,9 +38,9 @@ export function findDuplicates(node, parentPath, level, list) {
             
             if (noInnerObjects(arrayElement)) {
                 for (const key of Object.keys(arrayElement)) {
-                    const path = parentPath + "." + key
+                    const path = parentPath + `[${index}].${key}`
 
-                    if (vals.includes(arrayElement[key]) && keyEndsInId(key)) {
+                    if (vals.includes(arrayElement[key]) && keyEndsInId(key)) {                        
                         list.push({path, val: arrayElement[key]})
                     } else {
                         vals.push(arrayElement[key])
