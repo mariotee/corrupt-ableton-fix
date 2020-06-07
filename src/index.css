@@ -20,3 +20,11 @@ table {
 table, th, td {
   border: 1px solid grey;
 }
+
+div.main-ui {
+  padding: 0.5rem 2rem;
+}
+
+p.disclaimer {  
+  max-width: 50%;
+}

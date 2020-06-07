@@ -53,7 +53,7 @@ export default () => {
         setProcessing(false)        
     }
     
-    return <div>
+    return <div className="main-ui">
         <h1>Ableton Corrupted Ids Fix</h1>
         <p>
             To get started using this tool, you will need to do some tasks beforehand
@@ -67,34 +67,22 @@ export default () => {
             <li>Copy/Paste the new JSON text to <a href="https://www.convertjson.com/json-to-xml.htm">this sibling site</a> to get XML back</li>
             <li>Be patient as it may take a long time to copy/paste long text</li>
             <li>Download result as XML, and then rename to ".als"; it should open in Ableton</li>
-            <li>
-                DISCLAIMER: this project is still being optimised. I am not liable for any damage done to your original file.
-                This is why step 1 is absolutely crucial. You should still send your file to Ableton support to see if they can fix it.
-                They will definitely do a much better job than this tool.
-            </li>
         </ol>
-        <div>Import your project JSON</div>
+        <h3>Import your project JSON</h3>
         <input type="file" onChange={(e) => loadFile(e.target.files[0])}/>
 
         <button onClick={processFile}>Get New JSON</button>
         
         <section>
-        { processing ? <div>Processing...</div> : null }
+        {processing ? <h5>Processing...</h5> : null}
+        <h3>Output JSON</h3>
+        {<textarea readOnly rows={24} cols={80} value={outputJson}/>}           
         </section>
-        <section>
-            {<textarea readOnly rows={24} cols={80} value={outputJson}/>}
-            <table>
-                <thead>
-                    <tr><td>PATH</td><td>VALUE</td></tr>
-                </thead>
-                <tbody>
-                {
-                resultList.map((e,i) => <tr key={"tr"+i}>            
-                    <td>{e.path}</td><td>{e.val}</td>
-                </tr>)
-                }
-                </tbody>            
-            </table>
-        </section>
+
+        <p className="disclaimer">
+            DISCLAIMER: I am not liable for any damage done to your original file.
+            This is why step 1 is absolutely crucial. You should still send your file to Ableton support to see if they can fix it.
+            They will definitely do a much better job than this tool.
+        </p>
     </div>
 }
