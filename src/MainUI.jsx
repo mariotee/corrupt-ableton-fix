@@ -5,10 +5,10 @@ import * as Algs from './algs'
 
 export default () => {
     let reader
-    
-    const [stateList, setStateList] = React.useState([])
+        
     const [stateFile, setStateFile] = React.useState()
     const [processing, setProcessing] = React.useState(false)
+    const [xml, setXml] = React.useState('')
     
     const readFile = () => {
         setStateFile(reader.result)
@@ -21,16 +21,38 @@ export default () => {
     }
 
     const processFile = () => {
-        const list = []
+        setProcessing(true)
         XmlJs.parseString(stateFile, (err, parsed) => {
             if (err) {
                 console.log(err)
                 return
+            }              
+            
+            const list = []
+            
+            const res = Algs.findDuplicates(parsed.Ableton, "Ableton", 0, list)
+            const paths = res.map((e) => e.path)
+            let i = 0
+
+            for (const path of paths) {
+                let query = "parsed"
+                query += path.split('.').map((e) => {
+                    if (/\[\d+\]$/gim.test(e)) {
+                        let it = e.split('[')
+                        return `['${it[0]}'][${it[1]}`
+                    } else {
+                        return `['${e}']`
+                    }
+                }).join('')                
+
+                let thing = `if(${query}) {            
+                    ${query} = "99999${i++}"
+                }`
+
+                eval(thing)
             }
-            setProcessing(true)
-            Algs.findDuplicates(parsed.Ableton, "Ableton", 0, list)
-            //TODO: find a better way to render this list from the algorithm itself
-            setStateList(list)
+                        
+            setXml(new XmlJs.Builder().buildObject(parsed))
             setProcessing(false)
         });
     }
@@ -45,38 +67,25 @@ export default () => {
             <li>Unzip the new .zip file to get an uncompressed ALS file</li>
             <li>This is actually an XML file now, so upload the XML here</li>
             <li>
-                Once you click "Get List", you will see a list of all the keys in your XML where there 
-                are duplicate nodes that have their keys ending with "id"
+                Once you click "Get New Xml", you will see a bunch of text render in the box below. Copy/Paste this to a new file and
+                make sure it ends with ".als"
             </li>
             <li>
-                Use the error message from Ableton to help find the right duplicates to remove <br/>
-                <em>for example:</em>
-                <pre>
-                    The document "______" is corrupt. (Non-unique Note ids)
-                </pre>
-                <em>This means that you should look for keys with duplicate "Note Id" values</em>
+                DISCLAIMER: this project is still being optimised. I am not liable for any damage done to your original file.
+                This is why step 1 is absolutely crucial. You should still send your file to Ableton support to see if they can fix it.
+                They will definitely do a much better job than this tool.
             </li>
         </ol>
         <div>Import your project XML</div>
         <input type="file" onChange={(e) => loadFile(e.target.files[0])}/>
 
-        <button onClick={processFile}>Get List</button>
+        <button onClick={processFile}>Get New Xml</button>
         
         <section>
-            {processing ? <div>processing...</div> : null}
-            <table>
-                <thead>
-                    <tr><td>PATH</td><td>VALUE</td></tr>
-                </thead>
-                <tbody>
-                {
-                    stateList.map((e, i) => <tr key={i}>
-                        <td>{e.path}</td>
-                        <td>{e.val}</td>
-                    </tr>)
-                }
-                </tbody>
-            </table>
+        { processing ? <div>processing...</div> : null }
+        </section>
+        <section>
+            <textarea readOnly rows={24} cols={80} value={xml}/>
         </section>
     </div>
 }
