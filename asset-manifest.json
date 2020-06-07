@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/corrupt-ableton-fix/static/css/main.e1ee301a.chunk.css",
-    "main.js": "/corrupt-ableton-fix/static/js/main.26e3c52e.chunk.js",
-    "main.js.map": "/corrupt-ableton-fix/static/js/main.26e3c52e.chunk.js.map",
+    "main.css": "/corrupt-ableton-fix/static/css/main.6ec4ce6d.chunk.css",
+    "main.js": "/corrupt-ableton-fix/static/js/main.03ded688.chunk.js",
+    "main.js.map": "/corrupt-ableton-fix/static/js/main.03ded688.chunk.js.map",
     "runtime-main.js": "/corrupt-ableton-fix/static/js/runtime-main.bd66e79d.js",
     "runtime-main.js.map": "/corrupt-ableton-fix/static/js/runtime-main.bd66e79d.js.map",
     "static/js/2.a3fe18a2.chunk.js": "/corrupt-ableton-fix/static/js/2.a3fe18a2.chunk.js",
     "static/js/2.a3fe18a2.chunk.js.map": "/corrupt-ableton-fix/static/js/2.a3fe18a2.chunk.js.map",
     "index.html": "/corrupt-ableton-fix/index.html",
-    "precache-manifest.600bcb3a36097c30da88e8195415c3a7.js": "/corrupt-ableton-fix/precache-manifest.600bcb3a36097c30da88e8195415c3a7.js",
+    "precache-manifest.08c2c5c305dad4a10d26473867a9d9b0.js": "/corrupt-ableton-fix/precache-manifest.08c2c5c305dad4a10d26473867a9d9b0.js",
     "service-worker.js": "/corrupt-ableton-fix/service-worker.js",
-    "static/css/main.e1ee301a.chunk.css.map": "/corrupt-ableton-fix/static/css/main.e1ee301a.chunk.css.map",
+    "static/css/main.6ec4ce6d.chunk.css.map": "/corrupt-ableton-fix/static/css/main.6ec4ce6d.chunk.css.map",
     "static/js/2.a3fe18a2.chunk.js.LICENSE.txt": "/corrupt-ableton-fix/static/js/2.a3fe18a2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.bd66e79d.js",
     "static/js/2.a3fe18a2.chunk.js",
-    "static/css/main.e1ee301a.chunk.css",
-    "static/js/main.26e3c52e.chunk.js"
+    "static/css/main.6ec4ce6d.chunk.css",
+    "static/js/main.03ded688.chunk.js"
   ]
 }
