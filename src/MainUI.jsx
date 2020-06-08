@@ -1,52 +1,31 @@
 import React from 'react'
+import _ from 'lodash'
 
 import * as Algs from './algs'
 
 export default () => {
-    let reader
-    
-    const [resultList, setResultList] = React.useState([])
     const [stateFile, setStateFile] = React.useState()
     const [processing, setProcessing] = React.useState(false)
     const [outputJson, setOutputJson] = React.useState('')    
 
-    const readFile = () => {
-        setStateFile(reader.result)
-    }
-
     const loadFile = (file) => {
-        reader = new FileReader()
-        reader.onloadend = readFile
+        const reader = new FileReader()
+        reader.onloadend = () => {
+            setStateFile(reader.result)
+        }
         reader.readAsText(file)
     }
 
     const processFile = async () => {
         setProcessing(true)
+        //get input
         const parsed = JSON.parse(stateFile)
-        const list = []        
+        const list = []
+        //get duplicate paths
         const res = Algs.findDuplicates(parsed.Ableton, "Ableton", 0, list)
-
-        setResultList([...res])
-
-        const paths = res.map((e) => e.path)
-        let i = 0
-        for (const path of paths) {
-            let query = "parsed"
-            query += path.split('.').map((e) => {
-                if (/\[\d+\]$/gim.test(e)) {
-                    let it = e.split('[')
-                    return `['${it[0]}'][${it[1]}`
-                } else {
-                    return `['${e}']`
-                }
-            }).join('')                
-
-            let thing = `if(${query}) {            
-                ${query} = "${9999999+(i++)}"
-            }`
-            
-            eval(thing)            
-        }
+        //lodash set non-unique ids to high (unlikely) number
+        let idFix = 0
+        res.map((e) => _.set(parsed, e.path, `${99999+(idFix++)}`))                
         
         setOutputJson(JSON.stringify(parsed))
         
