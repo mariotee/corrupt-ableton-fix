@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/corrupt-ableton-fix/precache-manifest.9a08ecd7a9f9918710b0e0d1fc86ccb5.js"
+  "/corrupt-ableton-fix/precache-manifest.2534bc13058f99c60a40951242e15fbe.js"
 );
 
 self.addEventListener('message', (event) => {
