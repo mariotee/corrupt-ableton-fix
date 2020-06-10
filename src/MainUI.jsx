@@ -18,18 +18,21 @@ export default () => {
 
     const processFile = async () => {
         setProcessing(true)
-        //get input
-        const parsed = JSON.parse(stateFile)
-        const list = []
-        //get duplicate paths
-        const res = Algs.findDuplicates(parsed.Ableton, "Ableton", 0, list)
-        //lodash set non-unique ids to high (unlikely) number
-        let idFix = 0
-        res.map((e) => _.set(parsed, e.path, `${99999+(idFix++)}`))                
         
-        setOutputJson(JSON.stringify(parsed))
+        setTimeout(() => {
+            //get input
+            const parsed = JSON.parse(stateFile)
+            const list = []
+            //get duplicate paths
+            const res = Algs.findDuplicates(parsed.Ableton, "Ableton", 0, list)
+            //lodash set non-unique ids to high (unlikely) number
+            let idFix = 0
+            res.map((e) => _.set(parsed, e.path, `${99999+(idFix++)}`))                
         
-        setProcessing(false)        
+            setOutputJson(JSON.stringify(parsed))
+
+            setProcessing(false)     
+        }, 500)
     }
     
     return <div className="main-ui">
@@ -50,7 +53,7 @@ export default () => {
         <h3>Import your project JSON</h3>
         <input type="file" onChange={(e) => loadFile(e.target.files[0])}/>
 
-        <button onClick={processFile}>Get New JSON</button>
+        <button className="submit-json" onClick={processFile}>Get New JSON</button>
         
         <section>
         {processing ? <h5>Processing...</h5> : null}

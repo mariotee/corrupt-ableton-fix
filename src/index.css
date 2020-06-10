@@ -29,6 +29,7 @@ div.main-ui {
 button {
   border-radius: 4px;
   border: 1px solid #aaa;
+  margin: 8px 4px;
   padding: 2px 16px;
   box-shadow: 0 0.5px 2px 0 #33333366;
   cursor: pointer;
