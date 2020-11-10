@@ -1,4 +1,4 @@
-## WARNING: this project will soon be deprecated for a dotnet version. dotnet has better XML support, so i will move the algorithm to that
+## WARNING: this project is now deprecated for the dotnet version: https://github.com/mariotee/corrupt-als-dotnet
 
 # ableton-fix_corrupt-non-unique-ids
 This app was created to easily find which keys have non-unique IDs in a corrupt Ableton Live Set (.als) file. This error happens when Ableton sometimes tweaks and writes a duplicate ID to the project XML (which is invalid).
